@@ -7,10 +7,7 @@ def data():
 
 def best(x, i):
     c = Counter(x[i] for x in x).most_common()
-    if (c[0][1] == c[1][1]):
-        return "1"
-    else:
-        return c[0][0]
+    return "1" if (c[0][1] == c[1][1]) else c[0][0]
 
 def as_int(x):
     return int(''.join(x), 2)
