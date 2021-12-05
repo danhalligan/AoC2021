@@ -2,9 +2,9 @@ from aoc2021.helpers import *
 import numpy as np
 
 def data():
-    x = open("inputs/day04.txt").read().split("\n\n")
-    numbers = list(map(int, x[0].split(",")))
-    boards = [Board(y) for y in x[1:]]
+    chunks = input_str(4).split("\n\n")
+    numbers = list(map(int, chunks[0].split(",")))
+    boards = [Board(y) for y in chunks[1:]]
     return numbers, boards
 
 class Board:
