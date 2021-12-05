@@ -1,12 +1,8 @@
 from aoc2021.helpers import *
 
-def data():
-    return input().splitlines()
-
 def part1():
-    x = 0
-    y = 0
-    for line in data():
+    x, y = 0, 0
+    for line in input_lines(2):
         a, b = line.split()
         if a == "forward": x += int(b)
         elif a == "down": y += int(b)
@@ -15,10 +11,8 @@ def part1():
     return  x*y
 
 def part2():
-    x = 0
-    y = 0
-    aim = 0
-    for line in data():
+    x, y, aim = 0, 0, 0
+    for line in input_lines(2):
         a, b = line.split()
         if a == "forward":
             x += int(b)

@@ -3,7 +3,7 @@ from collections import Counter
 from operator import eq, ne
 
 def data():
-    return input().splitlines()
+    return input_lines(3)
 
 def best(x, i):
     c = Counter(x[i] for x in x).most_common()
@@ -16,8 +16,9 @@ def invert(x):
     return [{'0': '1', '1': '0'}[c] for c in x]
 
 def part1():
-    m = [best(data(), i) for i in range(12)]
-    return as_int(m) * as_int(invert(m))
+    gamma_rate = [best(data(), i) for i in range(12)]
+    epsilon_rate = invert(gamma_rate)
+    return as_int(gamma_rate) * as_int(epsilon_rate)
 
 def filter(dat, fn):
     for i in range(12):
@@ -26,6 +27,6 @@ def filter(dat, fn):
         if len(dat) == 1: return dat[0]
 
 def part2():
-    m = filter(data(), eq)
-    l = filter(data(), ne)
-    return as_int(m) * as_int(l)
+    oxygen_generator_rating = filter(data(), eq)
+    co2_scrubber_rating = filter(data(), ne)
+    return as_int(oxygen_generator_rating) * as_int(co2_scrubber_rating)

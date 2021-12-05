@@ -1,8 +1,10 @@
-import inspect
-import os.path
+# Functions to help read inputs
 
-def input():
-    path = inspect.stack()[1].filename 
-    file = os.path.splitext(os.path.basename(path))[0]
-    return open("inputs/" + file + ".txt", 'r').read()
+def input_str(day):
+    return open("inputs/day" + f'{day:02d}' + ".txt", 'r').read()
 
+def input_lines(day):
+    return input_str(day).splitlines()
+
+def input_ints(day):
+    return list(map(int, input_str(day).split()))

@@ -12,3 +12,9 @@ the current day using poetry.
 ``` bash
 poetry run aoc2021 inputs/day01.txt
 ```
+
+Or pass in multiple days to solve multiple inputs.
+
+``` bash
+poetry run aoc2021 inputs/*
+```
