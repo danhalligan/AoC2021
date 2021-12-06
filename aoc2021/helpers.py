@@ -4,7 +4,7 @@ import os
 
 def input_file(day):
     file = "inputs/day" + f'{day:02d}' + ".txt"
-    if os.environ['PYTEST']: file = "tests/" + file
+    if 'PYTEST' in os.environ: file = "tests/" + file
     return file
 
 def input_str(day):
