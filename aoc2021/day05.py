@@ -12,7 +12,7 @@ def n_overlaps(grid):
     return len([x for x in grid.values() if x > 1])
 
 def part1():
-    grid = defaultdict(lambda: 0)
+    grid = defaultdict(int)
     for x1, y1, x2, y2 in data():
         if x1 == x2:
             for i in drange(y1, y2): grid[x1, i] += 1
@@ -21,7 +21,7 @@ def part1():
     return n_overlaps(grid)
 
 def part2():
-    grid = defaultdict(lambda: 0)
+    grid = defaultdict(int)
     for x1, y1, x2, y2 in data():
         if x1 == x2:
             for i in drange(y1, y2): grid[x1, i] += 1
