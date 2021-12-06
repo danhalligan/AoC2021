@@ -16,12 +16,13 @@ def invert(x):
     return [{'0': '1', '1': '0'}[c] for c in x]
 
 def part1():
-    gamma_rate = [best(data(), i) for i in range(12)]
+    dat = data()
+    gamma_rate = [best(dat, i) for i in range(len(dat[0]))]
     epsilon_rate = invert(gamma_rate)
     return as_int(gamma_rate) * as_int(epsilon_rate)
 
 def filter(dat, fn):
-    for i in range(12):
+    for i in range(len(dat[0])):
         b = best(dat, i)
         dat = [x for x in dat if fn(x[i], b)]
         if len(dat) == 1: return dat[0]

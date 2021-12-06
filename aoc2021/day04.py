@@ -2,7 +2,7 @@ from aoc2021.helpers import *
 import numpy as np
 
 def data():
-    chunks = input_str(4).split("\n\n")
+    chunks = input_str(4).rstrip().split("\n\n")
     numbers = list(map(int, chunks[0].split(",")))
     boards = [Board(y) for y in chunks[1:]]
     return numbers, boards
