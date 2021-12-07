@@ -7,12 +7,12 @@ def input_file(day):
     if 'PYTEST' in os.environ: file = "tests/" + file
     return file
 
-def input_str(day):
-    return open(input_file(day), 'r').read()
+def input_str(file):
+    return open(file, 'r').read()
 
-def input_lines(day):
-    return input_str(day).splitlines()
+def input_lines(file):
+    return input_str(file).splitlines()
 
-def input_ints(day):
-    txt = input_str(day).rstrip()
+def input_ints(file):
+    txt = input_str(file).rstrip()
     return list(map(int, re.split(r'[\n,]', txt)))

@@ -1,4 +1,3 @@
-from aoc2021 import __version__
 import os
 import importlib
 import pytest
@@ -11,7 +10,8 @@ solutions = [
     (3, [198, 230]),
     (4, [4512, 1924]),
     (5, [5, 12]),
-    (6, [5934, 26984457539])
+    (6, [5934, 26984457539]),
+    (7, [37, 168])
 ]
 
 # Test each day by importing the module and running part1 and part2
