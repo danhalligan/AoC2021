@@ -1,8 +1,8 @@
 from aoc2021.helpers import *
 import numpy as np
 
-def data():
-    chunks = input_str(4).rstrip().split("\n\n")
+def data(file):
+    chunks = input_str(file).rstrip().split("\n\n")
     numbers = list(map(int, chunks[0].split(",")))
     boards = [Board(y) for y in chunks[1:]]
     return numbers, boards
@@ -21,16 +21,17 @@ class Board:
     def score(self, num):
         return np.sum(self.data[np.where(self.marks == False)]) * num
 
-def play(critera):
-    numbers, boards = data()
+def play(numbers, boards, critera):
     for num in numbers:
         for board in boards:
             board.fill(num)
             if critera(board, boards):
                 return board.score(num)
 
-def part1():
-    return play(lambda board, _: board.winner())
+def part1(file = input_file(4)):
+    numbers, boards = data(file)
+    return play(numbers, boards, lambda board, _: board.winner())
 
-def part2():
-    return play(lambda _, boards: all(b.winner() for b in boards))
+def part2(file = input_file(4)):
+    numbers, boards = data(file)
+    return play(numbers, boards, lambda _, boards: all(b.winner() for b in boards))

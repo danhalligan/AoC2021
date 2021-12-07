@@ -14,8 +14,8 @@ def solve(files: List[Path]):
             day = int(re.findall(r"\d+", path.name)[0])
             print(f"--- Day {day} ---")
             module = importlib.import_module(f"aoc2021.day{day:02d}")
-            print("Part 1:", getattr(module, 'part1')())
-            print("Part 2:", getattr(module, 'part2')())
+            print("Part 1:", getattr(module, 'part1')(path))
+            print("Part 2:", getattr(module, 'part2')(path))
             print()
 
 def main():
