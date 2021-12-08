@@ -12,7 +12,7 @@ def as_int(x):
 def invert(x):
     return [{'0': '1', '1': '0'}[c] for c in x]
 
-def part1(file = input_file(3)):
+def part1(file):
     data = input_lines(file)
     gamma_rate = [best(data, i) for i in range(len(data[0]))]
     epsilon_rate = invert(gamma_rate)
@@ -24,7 +24,7 @@ def filter(dat, fn):
         dat = [x for x in dat if fn(x[i], b)]
         if len(dat) == 1: return dat[0]
 
-def part2(file = input_file(3)):
+def part2(file):
     data = input_lines(file)
     oxygen_generator_rating = filter(data, eq)
     co2_scrubber_rating = filter(data, ne)

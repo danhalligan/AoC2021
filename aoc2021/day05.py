@@ -11,7 +11,7 @@ def drange(x, y):
 def n_overlaps(grid):
     return len([x for x in grid.values() if x > 1])
 
-def part1(file = input_file(5)):
+def part1(file):
     grid = defaultdict(int)
     for x1, y1, x2, y2 in data(file):
         if x1 == x2:
@@ -20,7 +20,7 @@ def part1(file = input_file(5)):
             for i in drange(x1, x2): grid[i, y1] += 1
     return n_overlaps(grid)
 
-def part2(file = input_file(5)):
+def part2(file):
     grid = defaultdict(int)
     for x1, y1, x2, y2 in data(file):
         if x1 == x2:

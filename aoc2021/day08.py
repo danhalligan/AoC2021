@@ -11,6 +11,8 @@ def digit_encoding():
         'abdfg': 5, 'abdefg': 6, 'acf': 7, 'abcdefg': 8, 'abcdfg': 9}
 
 # solve a mapping with sufficient information.
+# This works by looking for cases where a key maps to a singal value, it
+# then removes this value from any other values.
 def prune_map(map):
     for k in map.keys():
         if len(map[k]) == 1:
@@ -23,9 +25,9 @@ def prune_map(map):
 # e will have count of 4
 # b will have count of 6
 # f will have count of 9
-# c is within a wire with 2 signals (1)
-# a will be within a wire with three (7)
-# d will be within a wire with four (4)
+# c is within a digit with 2 signals on (1)
+# a will be within a digit with three signals on (7)
+# d will be within a digit with four signals on (4)
 def build_map(wires):
     wires = [sorted(list(x)) for x in wires]
     lengths = [len(x) for x in wires]
@@ -47,12 +49,12 @@ def decode_digits(digits, map):
     digits = [''.join(sorted([map[y] for y in list(x)])) for x in digits]
     return [digit_encoding()[x] for x in digits]
 
-def part1(file = input_file(8)):
+def part1(file):
     res = [decode_digits(d, build_map(w)) for w, d in data(file)]
     counts = Counter(np.concatenate(res))
     return sum(counts[x] for x in [1,4,7,8])
 
-def part2(file = input_file(8)):
+def part2(file):
     res = [decode_digits(d, build_map(w)) for w, d in data(file)]
     return sum(int(''.join([str(y) for y in x])) for x in res)
 
@@ -82,12 +84,12 @@ def part2(file = input_file(8)):
 #     return [enc[map[digit]] for digit in digits]
 
 # # # part 1
-# def part1(file = input_file(8)):
+# def part1(file):
 #     res = [decode(wires, digits) for wires, digits in data(file)]
 #     counts = Counter(np.concatenate(res))
 #     return counts[1] + counts[4] + counts[7] + counts[8]
 
 # # # part 2
-# def part2(file = input_file(8)):
+# def part2(file):
 #     res = [decode(wires, digits) for wires, digits in data(file)]
 #     return sum(int(''.join([str(y) for y in x])) for x in res)

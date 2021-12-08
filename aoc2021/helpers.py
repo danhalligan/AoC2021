@@ -2,11 +2,6 @@
 import re
 import os
 
-def input_file(day):
-    file = "inputs/day" + f'{day:02d}' + ".txt"
-    if 'PYTEST' in os.environ: file = "tests/" + file
-    return file
-
 def input_str(file):
     return open(file, 'r').read()
 

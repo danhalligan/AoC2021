@@ -1,12 +1,11 @@
 from aoc2021.helpers import *
 import numpy as np
 
-def part1(file = input_file(7)):
+def part1(file):
     dat = np.array(input_ints(file))
-    r = range(min(dat), max(dat) + 1)
-    return min(sum(abs(dat - i)) for i in r)
+    return sum(abs(dat - int(np.median(dat))))
 
-def part2(file = input_file(7)):
+def part2(file):
     dat = np.array(input_ints(file))
     r = range(min(dat), max(dat) + 1)
     costs = np.array([sum(range(i+1)) for i in r])
