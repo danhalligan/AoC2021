@@ -18,3 +18,19 @@ Or pass in multiple days to solve multiple inputs.
 ``` bash
 poetry run aoc2021 inputs/*
 ```
+
+You can automatically download the input for a given day by setting your
+[session cookie] in an environment variable:
+
+``` bash
+export AOC_SESSION=[your session]
+```
+
+Then using the helper function, e.g. for the day 3 input:
+
+```python
+> from aoc2021.helpers import *
+> get_input(3)
+```
+
+[session cookie]: https://www.reddit.com/r/adventofcode/comments/a2vonl/how_to_download_inputs_with_a_script/
