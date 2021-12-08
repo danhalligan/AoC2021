@@ -1,6 +1,6 @@
 from aoc2021.helpers import *
 
-def part1(file = input_file(2)):
+def part1(file):
     x, y = 0, 0
     for line in input_lines(file):
         a, b = line.split()
@@ -10,7 +10,7 @@ def part1(file = input_file(2)):
 
     return  x*y
 
-def part2(file = input_file(2)):
+def part2(file):
     x, y, aim = 0, 0, 0
     for line in input_lines(file):
         a, b = line.split()

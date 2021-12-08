@@ -28,10 +28,10 @@ def play(numbers, boards, critera):
             if critera(board, boards):
                 return board.score(num)
 
-def part1(file = input_file(4)):
+def part1(file):
     numbers, boards = data(file)
     return play(numbers, boards, lambda board, _: board.winner())
 
-def part2(file = input_file(4)):
+def part2(file):
     numbers, boards = data(file)
     return play(numbers, boards, lambda _, boards: all(b.winner() for b in boards))
