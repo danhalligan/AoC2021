@@ -2,6 +2,7 @@
 import re
 import os
 import requests
+from datetime import date
 
 def input_str(file):
     return open(file, 'r').read()
@@ -13,7 +14,8 @@ def input_ints(file):
     txt = input_str(file).rstrip()
     return list(map(int, re.split(r'[\n,]', txt)))
 
-def get_input(day):
+def get_input(day = date.today().day):
+    print(f"Downloading https://adventofcode.com/2021/day/{day}/input")
     res = requests.get(
         f'https://adventofcode.com/2021/day/{day}/input',
         cookies = {'session': os.environ.get('AOC_SESSION')}
