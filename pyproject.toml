@@ -9,6 +9,7 @@ readme = "README.md"
 python = ">=3.9,<3.11"
 typer = "^0.3.2"
 numpy = "^1.21.4"
+requests = "^2.26.0"
 
 
 [tool.poetry.dev-dependencies]

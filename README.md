@@ -26,11 +26,11 @@ You can automatically download the input for a given day by setting your
 export AOC_SESSION=[your session]
 ```
 
-Then using the helper function, e.g. for the day 3 input:
+Then using the helper function, e.g. for today's input:
 
 ```python
 > from aoc2021.helpers import *
-> get_input(3)
+> get_input()
 ```
 
 [session cookie]: https://www.reddit.com/r/adventofcode/comments/a2vonl/how_to_download_inputs_with_a_script/
