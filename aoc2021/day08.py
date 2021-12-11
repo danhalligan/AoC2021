@@ -59,9 +59,10 @@ def part2(file):
     return sum(int(''.join([str(y) for y in x])) for x in res)
 
 
-# #-------------------------------------------------------------------------------
-# # solution 2
-# #-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# solution 2
+#-------------------------------------------------------------------------------
 
 # # Each digit has a unique value based on the sum of the frequency of the
 # # the signals. For example, c occurs 8 and f occurs 9 times above, so the
