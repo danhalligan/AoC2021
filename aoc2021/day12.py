@@ -9,16 +9,16 @@ def create_map(file):
         map[b] += [a]
     return map
 
-def good_route(visited):
+def valid(visited):
     x = Counter(visited)
     x = [x[k] for k in x.keys() if k.islower() and x[k] > 1]
     return len(x) == 0
 
-def good_route2(visited):
+def valid2(visited):
     x = Counter(visited)
     if x['start'] > 1: return False
     x = [x[k] for k in x.keys() if k.islower()]
-    if any([v > 2 for v in x]): return False
+    if max(x) > 2: return False
     return sum(v > 1 for v in x) <= 1
 
 def follow(map, fn, loc, visited):
@@ -31,9 +31,9 @@ def follow(map, fn, loc, visited):
                 yield from follow(map, fn, dest, visited.copy())
 
 def part1(file):
-    map = create_map("inputs/day12.txt")
-    return len(list(follow(map, good_route, 'start', [])))
+    map = create_map(file)
+    return len(list(follow(map, valid, 'start', [])))
 
 def part2(file):
-    map = create_map("inputs/day12.txt")
-    return len(list(follow(map, good_route2, 'start', [])))
+    map = create_map(file)
+    return len(list(follow(map, valid2, 'start', [])))
