@@ -3,3 +3,4 @@ inputs/
 dist/
 htmlcov/
 */__pycache__/
+.session.txt

@@ -16,6 +16,8 @@ def input_ints(file):
 
 def get_input(day = date.today().day):
     print(f"Downloading https://adventofcode.com/2021/day/{day}/input")
+    if not 'AOC_SESSION' in os.environ and os.path.exists(".session.txt"):
+        os.environ['AOC_SESSION'] = open(".session.txt").read().rstrip()
     res = requests.get(
         f'https://adventofcode.com/2021/day/{day}/input',
         cookies = {'session': os.environ.get('AOC_SESSION')}
