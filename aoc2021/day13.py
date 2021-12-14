@@ -34,4 +34,5 @@ def part2(file):
     dots, folds = data(file)
     x = reduce(fold, folds, paper(dots)) >= 1
     x = [''.join({False:' ', True:'█'}[i] for i in r) for r in x]
+    print("\n\n" + "\n".join(x))
     return "\n\n" + "\n".join(x)
