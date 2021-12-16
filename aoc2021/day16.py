@@ -1,27 +1,10 @@
 from aoc2021.helpers import *
 from operator import *
-from math import prod
+from functools import reduce
 
 def hex2bin(hex):
-    map = {
-        '0': '0000',
-        '1': '0001',
-        '2': '0010',
-        '3': '0011',
-        '4': '0100',
-        '5': '0101',
-        '6': '0110',
-        '7': '0111',
-        '8': '1000',
-        '9': '1001',
-        'A': '1010',
-        'B': '1011',
-        'C': '1100',
-        'D': '1101',
-        'E': '1110',
-        'F': '1111',
-    }
-    return ''.join(map[x] for x in hex)
+    bin = format(int(hex, 16), "b")
+    return '0' * (4*len(hex) - len(bin)) + bin
 
 class Packet:
     def __init__(self, bin):
@@ -56,31 +39,16 @@ def sum_versions(x):
     return x.version + sum(sum_versions(p) for p in x.packets)
 
 def evaluate(x):
+    if x.type_id == 4: return x.value
     vals = [evaluate(p) for p in x.packets]
-    if x.type_id == 0:
-        return sum(vals)
-    elif x.type_id == 1:
-        return prod(vals)
-    elif x.type_id == 2:
-        return min(vals)
-    elif x.type_id == 3:
-        return max(vals)
-    elif x.type_id == 4:
-        return x.value
-    elif x.type_id == 5:
-        return int(gt(*vals))
-    elif x.type_id == 6:
-        return int(lt(*vals))
-    elif x.type_id == 7:
-        return int(eq(*vals))
+    fn = [add, mul, min, max, None, gt, lt, eq][x.type_id]
+    return reduce(fn, vals)
 
 def part1(file):
     str = input_str(file).rstrip()
-    x = Packet(hex2bin(str))
-    return sum_versions(x)
+    return sum_versions(Packet(hex2bin(str)))
 
 def part2(file):
     str = input_str(file).rstrip()
-    x = Packet(hex2bin(str))
-    return evaluate(x)
+    return evaluate(Packet(hex2bin(str)))
 
