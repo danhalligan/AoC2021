@@ -3,35 +3,34 @@ from operator import *
 from functools import reduce
 
 def hex2bin(hex):
-    bin = format(int(hex, 16), "b")
-    return '0' * (4*len(hex) - len(bin)) + bin
+    return format(int(hex, 16), "b").zfill(4*len(hex))
 
 class Packet:
     def __init__(self, bin):
         self.bin = bin
-        self.version = int(self.popn(3), 2)
-        self.type_id = int(self.popn(3), 2)
+        self.version = int(self.shift(3), 2)
+        self.type_id = int(self.shift(3), 2)
         self.packets = []
         if self.type_id == 4:
             self.value = ''
             while True:
-                v = self.popn(5)
+                v = self.shift(5)
                 self.value += v[1:]
                 if (v[0] == '0'): break
             self.value = int(self.value, 2)
         else:
-            length = {'1': 11, '0': 15}[self.popn(1)]
+            length = {'1': 11, '0': 15}[self.shift(1)]
             if length == 15:
-                x = self.popn(int(self.popn(length), 2))
+                x = self.shift(int(self.shift(length), 2))
                 while len(x):
                     self.packets += [Packet(x)]
                     x = self.packets[-1].bin
             else:
-                for i in range(int(self.popn(length), 2)):
+                for i in range(int(self.shift(length), 2)):
                     self.packets += [Packet(self.bin)]
                     self.bin = self.packets[-1].bin
 
-    def popn(self, n):
+    def shift(self, n):
         val, self.bin = self.bin[:n], self.bin[n:]
         return val
 
