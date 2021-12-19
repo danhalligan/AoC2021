@@ -24,3 +24,4 @@ def get_input(day = date.today().day):
     )
     with open("inputs/day" + f'{day:02d}' + ".txt", 'w') as f:
         f.write(res.text)
+    return "inputs/day" + f'{day:02d}' + ".txt"
