@@ -1,7 +1,6 @@
 from aoc2021.helpers import *
 import re
 from collections import defaultdict
-import numpy as np
 
 def data(file):
     s = input_str(file).splitlines()
@@ -36,9 +35,7 @@ def overlapping(a, b):
 def subcubes(a, b):
     (x, X), (y, Y), (z, Z) = a
     (u, U), (v, V), (w, W) = b
-    if not overlapping(a, b):
-        yield b
-    else:
+    if overlapping(a, b):
         if x > u:
             yield ((u, x - 1), (v, V), (w, W))
         if X < U:
@@ -51,6 +48,8 @@ def subcubes(a, b):
             yield ((max(u, x), min(U, X)), (max(v, y), min(V, Y)), (w, z - 1))
         if Z < W:
             yield ((max(u, x), min(U, X)), (max(v, y), min(V, Y)), (Z + 1, W))
+    else:
+        yield b
 
 def part2(file):
     dat = list(data(file))
@@ -58,8 +57,7 @@ def part2(file):
     for state, c1 in dat:
         new = []
         for c2 in cubes:
-            for subcube in subcubes(c1, c2):
-                new.append(subcube)
+            new += list(subcubes(c1, c2))
         if state:
             new.append(c1)
         cubes = new
